@@ -1,35 +1,32 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+
 import './App.css'
+import { CORE_CONCEPTS, EXAMPLES } from './data.js'
+import Header from './components/Header/Header'
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const [selectedTopic, setSeletectTopic] = useState('')
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    let tabContent = <p>Please select a topic.</p>
+
+    if (selectedTopic) {
+        tabContent = (
+            <div id="tab-content">
+                <h3>{EXAMPLES[selectedTopic].title}</h3>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <p>{EXAMPLES[selectedTopic].description}</p>
+                <pre>
+                    <code>{EXAMPLES[selectedTopic].code}</code>
+                </pre>
+            </div>
+        )
+    }
+
+    return (
+        <>
+            <Header />
+        </>
+    )
 }
 
 export default App
